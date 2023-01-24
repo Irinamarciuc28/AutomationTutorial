@@ -15,34 +15,34 @@ public class AlertMethods {
 
     public AlertMethods(WebDriver driver) {
         this.driver = driver;
+    }
 
-        public void AcceptAlert() {
-            WaitAlert();
-            Alert alert = driver.switchTo().alert();
+    public void AcceptAlert() {
+        WaitAlert();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    public void DismissAlert() {
+        WaitAlert();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
+
+    public void FillAlert(String Value,boolean MakeDecission){
+        WaitAlert();
+        Alert alert = driver.switchTo().alert();
+        alert.sendKeys(Value);
+        if (MakeDecission) {
             alert.accept();
-        }
+        } else
+            alert.dismiss();
+    }
 
-        public void DismissAlert() {
-            WaitAlert();
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-        }
+    private void WaitAlert(){
+        WebDriverWait WaitExplicit = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WaitExplicit.until(ExpectedConditions.alertIsPresent());
 
-        public void FillAlert(String Value,boolean MakeDecission){
-            WaitAlert();
-            Alert alert = driver.switchTo().alert();
-            alert.sendKeys(Value);
-            if (MakeDecission) {
-                alert.accept();
-            } else
-                alert.dismiss();
-        }
-
-        private void WaitAlert(){
-            WebDriverWait WaitExplicit = new WebDriverWait(driver, Duration.ofSeconds(10));
-            WaitExplicit.until(ExpectedConditions.alertIsPresent());
-
-        }
     }
 
 
