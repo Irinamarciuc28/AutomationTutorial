@@ -1,7 +1,10 @@
 package Tests;
 
 import HelpMethods.ElementMethods;
-import ShareData.ShareData;
+import Objects.LoginObject;
+
+import ShareData.Hooks;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.By;
@@ -9,13 +12,15 @@ import org.openqa.selenium.WebElement;
 
 
 
-public class  LoginTest extends ShareData {
+
+public class  LoginTest extends Hooks {
 
 
 
 
     @Test
     private void metodaTest(){
+        LoginObject loginObject = new LoginObject(TestData);
 
         //Declaram un obiect si refacturizam actiunile
         ElementMethods elementMethods = new ElementMethods(getDriver());
@@ -42,6 +47,9 @@ public class  LoginTest extends ShareData {
         WebElement error = getDriver().findElement(By.id("errormsg"));
         String expectedError = "Invalid User Name or PassWord";
         elementMethods.ValidateElementText(error, expectedError);
+
+
+
 
 
 
