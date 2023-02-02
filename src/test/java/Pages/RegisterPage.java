@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.awt.*;
+
 public class RegisterPage extends  BasePage{
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -16,6 +18,8 @@ public class RegisterPage extends  BasePage{
     @FindBy(xpath = "//a[text()='Alerts']")
     private WebElement AlertElement;
 
+    @FindBy(xpath = "//a[text()='Frames']")
+    private WebElement FrameElement;
 
     public void goToAlert(){
 
@@ -23,6 +27,14 @@ public class RegisterPage extends  BasePage{
         element.MoveToElement(SwitchTo);
         element.ClickElement(AlertElement);
         pageMethod.NavigateToPage("http://demo.automationtesting.in/Alerts.html");
+
+    }
+    public void goToFrames(){
+
+
+        element.MoveToElement(SwitchTo);
+        element.ClickElement(FrameElement);
+        pageMethod.NavigateToPage("http://demo.automationtesting.in/Frames.html");
 
     }
 }

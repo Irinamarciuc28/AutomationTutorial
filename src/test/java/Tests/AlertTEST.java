@@ -1,28 +1,21 @@
 package Tests;
 
-import HelpMethods.AlertMethods;
-import HelpMethods.ElementMethods;
-import HelpMethods.PageMethod;
+import Objects.AlertObjects;
 import Pages.AlertPage;
 import Pages.IndexPage;
 import Pages.RegisterPage;
 import ShareData.ShareData;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static org.openqa.selenium.By.*;
-
-public class AlertTEST extends ShareData {
+public class AlertTEST extends Hooks {
 
 
 
     @Test
     public void MetodaTest(){
+
+        AlertObjects alertObjects = new AlertObjects(testData);
 
 
         IndexPage indexPage = new IndexPage(getDriver());
@@ -34,6 +27,6 @@ public class AlertTEST extends ShareData {
         AlertPage alertPage = new AlertPage(getDriver());
         alertPage.interactAlertAccept();
         alertPage.InteractAlertDismiss();
-        alertPage.InteractAlertValue("ceva");
+        alertPage.InteractAlertValue(alertObjects);
     }
 }

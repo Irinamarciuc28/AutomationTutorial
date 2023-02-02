@@ -1,6 +1,8 @@
 import HelpMethods.ElementMethods;
 import HelpMethods.FrameMethods;
 import HelpMethods.PageMethod;
+import Pages.IndexPage;
+import Pages.RegisterPage;
 import ShareData.ShareData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,28 +13,17 @@ public class FramesTest extends ShareData {
 
     @Test
     public void MetodaTest() {
-        
-        ElementMethods element = new ElementMethods(getDriver());
-        PageMethod pElement =  new PageMethod(getDriver());
-        FrameMethods fElement= new FrameMethods(getDriver());
 
+       IndexPage indexPage = new IndexPage(getDriver());
+       indexPage.clickSkipSignIn();
+       RegisterPage registerPage =new RegisterPage(getDriver());
+       registerPage.goToFrames();
 
-        WebElement SkipRegister = getDriver().findElement(By.id("btn2"));
-        element.clickElement(SkipRegister);
 
         //Wait explicit cu conditii diferite
 
 
-        WebElement SwitchToElem = getDriver().findElement(By.xpath("//a[text()='SwitchTo']"));
-        //Mergem cu mouse pe anumit element
-        element.MoveToElement(SwitchToElem);//se muta pe un element si face perform
 
-
-        WebElement clickFrames = getDriver().findElement(By.xpath("//a[text()='Frames']"));
-        element.clickElement(clickFrames);
-
-        //navigam catre un URL - metoda navigate nu asteapta sa incarce o pagina
-        pElement.navigateToPage("http://demo.automationtesting.in/Frames.html");
 
         List<WebElement> FrameOptions = getDriver().findElements(By.cssSelector(".nav-tabs>li>a"));
         element.clickElement(FrameOptions.get(0));//facem click pe primul element
