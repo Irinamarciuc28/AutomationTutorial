@@ -1,12 +1,16 @@
+package Tests;
 
+import HelpMethods.ElementMethods;
+import HelpMethods.FrameMethods;
+import HelpMethods.PageMethod;
 import Objects.FrameObject;
 import Pages.FramePage;
 import Pages.IndexPage;
 import Pages.RegisterPage;
+
 import ShareData.Hooks;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 
 
 public class FrameTest extends Hooks {
@@ -14,8 +18,8 @@ public class FrameTest extends Hooks {
     @Test
     public void metodaTest(){
 
-
         FrameObject frameObject = new FrameObject(TestData);
+
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSkipSignIn();
 

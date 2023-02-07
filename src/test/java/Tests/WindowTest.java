@@ -7,8 +7,7 @@ import Pages.WindowPage;
 import ShareData.Hooks;
 import org.testng.annotations.Test;
 
-    public class WindowTest extends Hooks{
-
+   public class WindowTest extends Hooks {
 
     @Test
     public void metodaTest(){
