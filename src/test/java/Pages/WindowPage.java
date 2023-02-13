@@ -29,27 +29,28 @@ public class WindowPage extends BasePage {
         element.clickElement(windowsOptions.get(0));
         element.clickElement(btn1);
 
-        windowMethods.moveSpecificTabWindow(1);
-        windowMethods.CloseCurrentTabWindow();
-        windowMethods.moveSpecificTabWindow(0);
+        windowMethods.moveSpecificTabW(1);
+        windowMethods.closeCurentTabW();
+        windowMethods.moveSpecificTabW(0);
     }
     public void WindowProcess(){
         windowsOptions.get(1).click();
         element.clickElement(btn2);
-        windowMethods.moveSpecificTabWindow(1);
-        windowMethods.CloseCurrentTabWindow();
-        windowMethods.moveSpecificTabWindow(0);
+        windowMethods.moveSpecificTabW(1);
+        windowMethods.closeCurentTabW();
+        windowMethods.moveSpecificTabW(0);
 
     }
 
     public void MultipleTabesProcess(){
         windowsOptions.get(2).click();
         element.clickElement(btn3);
-        windowMethods.moveSpecificTabWindow(2);
-        windowMethods.CloseCurrentTabWindow();
-        windowMethods.moveSpecificTabWindow(1);
-        windowMethods.CloseCurrentTabWindow();
-        windowMethods.moveSpecificTabWindow(0);
+
+        windowMethods.moveSpecificTabW(2);
+        windowMethods.closeCurentTabW();
+        windowMethods.moveSpecificTabW(1);
+        windowMethods.closeCurentTabW();
+        windowMethods.moveSpecificTabW(0);
 
     }
 

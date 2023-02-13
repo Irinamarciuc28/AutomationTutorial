@@ -84,19 +84,19 @@ public class RegisterPage extends BasePage{
     //sau o singura metoda cu foarte multi parametrii --> vezi curs
 
     public void goToAlert(){
-        element.MoveToElement(SwitchToElem);
+        element.moveToElement(SwitchToElem);
         element.clickElement(clickAlert1);
         pageMethods.navigateToPage("https://demo.automationtesting.in/Alerts.html");
     }
 
     public void goToFrame(){
-        element.MoveToElement(SwitchToElem);
+        element.moveToElement(SwitchToElem);
         element.clickElement(clickFrames);
         pageMethods.navigateToPage("https://demo.automationtesting.in/Frames.html");
     }
 
     public void goToWindows(){
-        element.MoveToElement(SwitchToElem);
+        element.moveToElement(SwitchToElem);
         element.clickElement(clickWindows);
         pageMethods.navigateToPage("https://demo.automationtesting.in/Windows.html");
     }
@@ -125,7 +125,7 @@ public class RegisterPage extends BasePage{
 
     public void SkillsInfo(String language, String pLanguage){
         element.clickElement(Hobby);
-        element.ScrollByPixel(0, 300);
+        element.scrollByPixel(0,300);
         element.clickElement(Language);
 
         // Interactionam cu o multime de elemente .Lista de Language care e element div

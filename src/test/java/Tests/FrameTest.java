@@ -1,8 +1,5 @@
 package Tests;
 
-import HelpMethods.ElementMethods;
-import HelpMethods.FrameMethods;
-import HelpMethods.PageMethod;
 import Objects.FrameObject;
 import Pages.FramePage;
 import Pages.IndexPage;
@@ -18,7 +15,7 @@ public class FrameTest extends Hooks {
     @Test
     public void metodaTest(){
 
-        FrameObject frameObject = new FrameObject(TestData);
+        FrameObject frameObject = new FrameObject(testData);
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSkipSignIn();

@@ -3,7 +3,6 @@ package HelpMethods;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.css.model.Value;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -20,56 +19,60 @@ public class ElementMethods {
         this.driver = driver;
     }
 
-    //Facem metode generale pentru interactiunile cu elemente
-     public void ClickElement(WebElement Element){
-        WaitElementVisible(Element);
-        Element.click();
+    //Facem metode generale pentru intereactiunle cu elementele - pt actiuni asupra elementelor
 
-     }
 
-     public void WaitElementVisible(WebElement Element){
-         WebDriverWait WaitExplicit=new WebDriverWait(driver, Duration.ofSeconds(10));
-         WaitExplicit.until(ExpectedConditions.visibilityOf(Element));
-
-     }
-     public void FillElement(WebElement Element,String Value){
-        WaitElementVisible(Element);
-        Element.sendKeys(Value);
-     }
-
-     public void ValidateElementText(WebElement Element, String Value){
-        WaitElementVisible(Element);
-        String Actual = Element.getText();
-         Assert.assertEquals(Value, Actual);
-
-     }
-
-     public void SelectElementText(WebElement Element, String Value){
-        WaitElementVisible(Element);
-        Select ElementSelect= new Select(Element);
-        ElementSelect.selectByVisibleText(Value);
-     }
-
-    public void SelectElementValue(WebElement Element, String Value){
-        WaitElementVisible(Element);
-        Select ElementSelect= new Select(Element);
-        ElementSelect.selectByValue(Value);
+    //Metoda sa faca click
+    public void clickElement(WebElement element){
+        waitElementVisible(element);
+        element.click();
     }
 
-
-    public void clickElement(WebElement signIn) {
+    //Metoda sa astepte
+    public void waitElementVisible(WebElement element){
+        WebDriverWait waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(10));
+        waitExplicit.until(ExpectedConditions.visibilityOf(element));
     }
-    public void ScrollByPixel(Integer x,Integer y){
+
+    //Metoda sendkeys
+    public void fillElement(WebElement element, String value){
+        waitElementVisible(element);
+        element.sendKeys(value);
+    }
+
+    //Metoda de validare
+    public void validateElementText(WebElement element, String value){
+        waitElementVisible(element); //am chemat metoda de wait exxplicit
+        String actualValue = element.getText();
+        Assert.assertEquals(value, actualValue);
+    }
+
+    //metoda de selectare
+    public void SelectElementText(WebElement element, String value){
+        waitElementVisible(element);
+        Select elementSelect = new Select(element);
+        elementSelect.selectByVisibleText(value);
+
+    }
+
+    public void SelectElementValue(WebElement element, String value){
+        waitElementVisible(element);
+        Select elementSelect = new Select(element);
+        elementSelect.selectByValue(value);
+
+    }
+
+    public void scrollByPixel(Integer x, Integer y){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy("+x+","+y+")");
+        js.executeScript("window.scrollBy("+x+","+y+")"); //de fapt are nevoie de String asa ca concatenam integer in string
+
     }
 
-    public void MoveToElement(WebElement Element){
-        WaitElementVisible(Element);
-        Actions actions = new Actions(driver);
-        actions.moveToElement(Element).perform();
+    public void moveToElement(WebElement element){
+        waitElementVisible(element);
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
     }
 
-    public void fillElement(WebElement input2, String acumaMaJunsAici) {
-    }
+
 }

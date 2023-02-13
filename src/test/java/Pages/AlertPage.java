@@ -24,22 +24,22 @@ public class AlertPage extends BasePage {
     @FindBy(css="#Textbox>button")
     private WebElement btn3;
 
-    public void interactAlerctAccept(){
+    public void interactAlertAccept(){
         element.clickElement(alertOptions.get(0));//facem click pe primul element
         element.clickElement(btn1);
-        alertsMethods.AcceptAlert();
+        alertsMethods.acceptAlert();
     }
 
     public void interactAlertDismiss(){
         element.clickElement(alertOptions.get(1));
         element.clickElement(btn2);
-        alertsMethods.AcceptAlert();
+        alertsMethods.dismissAlert();
     }
 
     public void interactAlertValue(AlertObject alertObject){
         element.clickElement(alertOptions.get(2));
         element.clickElement(btn3);
-        alertsMethods.FillAlert(alertObject.getAlertText(), Boolean.TRUE);
+        alertsMethods.fillAlert(alertObject.getAlertText(), Boolean.TRUE);
     }
 
 }

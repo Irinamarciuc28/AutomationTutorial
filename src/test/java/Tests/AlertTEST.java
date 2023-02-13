@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
     @Test
     public void metodaTest(){
 
-        AlertObject alertObject = new AlertObject(TestData);
+        AlertObject alertObject = new AlertObject(testData);
 
 
         IndexPage indexPage = new IndexPage(getDriver());
@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
         registerPage.goToAlert();
 
         AlertPage alertPage = new AlertPage(getDriver());
-        alertPage.interactAlerctAccept();
+        alertPage.interactAlertAccept();
         alertPage.interactAlertDismiss();
         alertPage.interactAlertValue(alertObject);
 

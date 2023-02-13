@@ -7,17 +7,18 @@ import java.util.List;
 
 public class WindowMethods {
 
-    private   WebDriver driver;
+    private WebDriver driver;
 
-    public WindowMethods(WebDriver driver){this.driver = driver; }
-    public void moveSpecificTabWindow(Integer index){
-        List<String> browserTabs=new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(browserTabs.get(index));
-
+    public WindowMethods(WebDriver driver) {
+        this.driver = driver;
     }
-    public void CloseCurrentTabWindow(){
+
+    public void moveSpecificTabW(Integer index){
+        List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(browserTabs .get(index));
+    }
+
+    public void closeCurentTabW(){
         driver.close();
-
     }
-
 }

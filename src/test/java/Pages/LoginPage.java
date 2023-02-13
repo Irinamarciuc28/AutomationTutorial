@@ -34,7 +34,7 @@ public class LoginPage extends BasePage {
         element.fillElement(parola, loginObject.getPassword());
 
         element.clickElement(Enter);
-        element.ValidateElementText(error, loginObject.getMessage());
+        element.validateElementText(error, loginObject.getMessage());
 
     }
 }

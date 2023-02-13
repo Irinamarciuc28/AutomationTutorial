@@ -1,8 +1,9 @@
 package ShareData;
 
 import ExtentUtility.ExtentReport;
-import InputFile.PropertiesUtility;
+import InputFile.PropertiesUtilities;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.model.Log;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -12,46 +13,54 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Hooks extends  ShareData{
+public class Hooks extends ShareData{
 
-    public HashMap<String, String> TestData;
-    private String TestName;
+    public HashMap <String, String> testData;
+    private String testName;
 
-    //Implementam o logica de generare a unui singur raport pentru N teste
+    //implementam o logica de generare a unui singur raport pt n teste
 
-    public static ExtentReport ExtentReportUtility= new ExtentReport();
-    public static List<Log>LogContext = new ArrayList<>();
-    public ExtentReport TestReport;
-
+    public static ExtentReport ExtentReportUtility = new ExtentReport(); //sa pastreze toate info
+    public static List<Log> logContext = new ArrayList<>();
+    public ExtentReport testReport;
 
     @BeforeMethod
-    public void PrepareEnvironment(){
-        Setup();
-        TestName = this.getClass().getSimpleName();
-        PropertiesUtility propertiesUtility = new PropertiesUtility(TestName);
-        TestData = propertiesUtility.GetAllData();
-        TestReport =  new ExtentReport(TestName);
+    public void prepareEnviroment(){
 
+        setupChrome();
+        testName=this.getClass().getSimpleName(); //returneaza numele clasei care ruleaza
+
+        PropertiesUtilities propertiesUtilities = new PropertiesUtilities(testName);
+        testData=propertiesUtilities.GetAllData();
+
+        testReport = new ExtentReport(testName);
 
     }
+
     @AfterMethod
-    public void ClearEnvironment(ITestResult Result){
-
-        //trebuie sa tratam cazul cand cade un test
-        if (Result.getStatus()==ITestResult.FAILURE){
-
+    public void clearEnviroment(ITestResult testResult){ //listener din testng
+        if(testResult.getStatus() == ITestResult.FAILURE){
+            testReport.attacheReport("fail", testResult.getThrowable().getMessage(), getDriver(), testName);
         }
-        //facem o logica care sa genereze raportul inainte sa inchida driverul
+        //facem o logica care sa genereze raportul inainte sa inchide driver ul;//daca testele au ajusn in acelasi punct => daca mai multe thereduri nu se suprapun */
+        testReport.attacheReport("info", " --- finish "+testName+" test ---");
+
         synchronized (ExtentReportUtility){
-            ExtentTest CurentTest = ExtentReportUtility.getExtent().createTest(""+TestName+"- report");
-            LogContext.addAll(TestReport.getTestReport().getModel().getLogs());
-            for (Log log:LogContext){
-                CurentTest.getModel().getLogs().add(log);
+
+            ExtentTest currentTest = ExtentReportUtility.getExtent().createTest(" " + testName+ "- report");
+            logContext.addAll(testReport.getTestReport().getModel().getLogs());
+            for(Log log:logContext){
+                currentTest.getModel().getLogs().add(log);
+                if(log.getStatus().equals(Status.FAIL)){
+                    currentTest.getModel().setStatus(Status.FAIL);
+                }
             }
             ExtentReportUtility.getExtent().flush();
-            LogContext.clear();
+            logContext.clear(); //curatam lista de loguri
         }
-        Clear();
 
+        //trebuie sa tratam cazul in care cade un test
+        clearBrowser();
     }
+
 }

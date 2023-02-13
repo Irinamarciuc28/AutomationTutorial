@@ -7,21 +7,24 @@ import Pages.WindowPage;
 import ShareData.Hooks;
 import org.testng.annotations.Test;
 
-   public class WindowTest extends Hooks {
+    public class WindowTest extends Hooks{
 
     @Test
     public void metodaTest(){
 
         IndexPage indexPage = new IndexPage(getDriver());
         indexPage.clickSkipSignIn();
+        testReport.attacheReport("pass", "Click  SkipSignIn button");
 
         RegisterPage registerPage = new RegisterPage(getDriver());
         registerPage.goToWindows();
+        testReport.attacheReport("pass","Go to Windows tab");
 
         WindowPage windowPage = new WindowPage(getDriver());
         windowPage.tabProcess();
         windowPage.WindowProcess();
         windowPage.MultipleTabesProcess();
+        testReport.attacheReport("pass", "Manage tabs and windows");
 
     }
 

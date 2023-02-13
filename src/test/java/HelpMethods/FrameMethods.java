@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FrameMethods {
+
     private WebDriver driver;
 
     public FrameMethods(WebDriver driver) {
